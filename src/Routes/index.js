@@ -1,27 +1,24 @@
 import React from 'react';
 import { 
-	BrowserRouter as Router,
+	
   	Switch,
-  	Route,
   	useHistory
   } from 'react-router-dom';
-
+import Route from './Router';
 import SignIn from '../screens/SignIn';
 import SignUp from '../screens/SignUp';
+import Dashboard from '../screens/Dashboard';
+import NotFound from '../screens/NotFound';
 
 
 export default () => {
 	return (
-		<Router>
 		<Switch>
-			<Route path='/' exact>
-				<SignIn/>
-			</Route>
-			<Route path='/signup' exact>
-				<SignUp/>
-			</Route>
+			<Route path='/' exact component={SignIn}/>
+			<Route path='/signup' exact component={SignUp} />
+			<Route path='/dashboard' exact component={Dashboard} isPrivate/>
+			<Route component={NotFound}/>
 		</Switch>
-	</Router>
 		)
 
 }
