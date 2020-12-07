@@ -1,11 +1,11 @@
-import axios from './configAxios';
+import api from './api';
 
 export const indexMeet = async() => {
 	try{
-		const { data } = await axios.get('/meet/index');
+		const { data } = await api.get('/meet/index');
 		return data;
 	}catch(error){
-		return {error};
+		return error.response.data;
 	}
 }
 
@@ -13,16 +13,16 @@ export const addBanner = async (file) => {
 	try {
 		const formData = new FormData();
 		formData.append('file', file);
-		const  { data }  = await axios.post('/meet/banner', formData);
+		const  { data }  = await api.post('/meet/banner', formData);
 		return data;
 	}catch(error){
-		return { error};
+		return error.response.data;
 	}
 }
 
 export const createMeet = async ( { localization, description, date, banner_id } ) => {
 	try {
-		const { data } = await axios.post('/meet/store',{
+		const { data } = await api.post('/meet/store',{
 			localization,
 			description,
 			date,
@@ -31,13 +31,13 @@ export const createMeet = async ( { localization, description, date, banner_id }
 
 		return data;
 	}catch(error){
-		return { error};
+		return error.response.data;
 	}
 }
 
 export const updateMeet = async (id, meet) => {
 	try {
-		const { data } = await axios.put(`/meet/update`, {
+		const { data } = await api.put(`/meet/update`, {
 			...meet,
 		}, {
 			params: {
@@ -48,28 +48,28 @@ export const updateMeet = async (id, meet) => {
 		return data;
 
 	}catch(error){
-		return { error};
+		return  error.response.data;
 	}
 }
 
 export const deleteMeet = async (id) => {
 	try {
-			const { data } = await axios.delete('/meet/delete', {
+			const { data } = await api.delete('/meet/delete', {
 			params: {id}
 		});
 		return data;
 
 	}catch(error){
-		return { error};
+		return  error.response.data;
 	}
 }
 
 export const indexAllMeets = async ()=> {
 	try {
-		const { data } = await axios.get('/meets/all');
+		const { data } = await api.get('/meets/all');
 		return data;
 	}catch(error) {
-		return { error };
+		return  error.response.data;
 	}
 }
 

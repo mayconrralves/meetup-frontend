@@ -7,12 +7,11 @@ const Form = styled.form`
 
 	input{
 		border: 0;
-		width: 303px;
+		width: 315px;
 		height: 50px;
 		margin-bottom: 6px;
 		border-radius: 4px;
 		font-size: 18px;
-		color: #fff;
 		background-color: rgba(0,0,0, 0.3);
 		padding: 0 0 0 12px;
 		&::placeholder {

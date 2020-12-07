@@ -1,32 +1,32 @@
-import axios from './configAxios';
+import api from './api';
 
 export const createEnrollment = async (id) => {
 	try {
-		const { data } = await axios.post('/meet/enrollment', null, {
+		const { data } = await api.post('/meet/enrollment', null, {
 			params: { id },
 		});
 
 		return data;
 	}catch(error){
-		return { error};
+		return error.response;
 	}
 }
 
 export const canceledEnrollment = async (idMeet) => {
 	try {
-		const  { data } = await axios.put('/meet/enrollment/update', null, {
+		const  { data } = await api.put('/meet/enrollment/update', null, {
 			params: { id : idMeet},
 		});
 		return data;
 
 	}catch(error){
-		return { error};
+		return error.response;
 	}
 }
 
 export const indexEnrollment = async (date='2020-12-01T00:00:00', page=1) => {
 	try {
-		const { data } = await axios.get('/meet/enrollment/index', {
+		const { data } = await api.get('/meet/enrollment/index', {
 			params: {
 				date,
 				page,
@@ -36,6 +36,6 @@ export const indexEnrollment = async (date='2020-12-01T00:00:00', page=1) => {
 		return data;
 
 	}catch(error){
-		return { error};
+		return error.response;
 	}
 }

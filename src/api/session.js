@@ -1,34 +1,36 @@
-import axios from './configAxios';
+import api from './api';
+
 
 export const signIn = async (email, password)=>{
 	try{
-		const result = await axios.post('/signin', {
+		const result = await api.post('/signin', {
 			email,
 			password,
-		});	
+		});
 		return result.data;
 	}catch(error){
-			return {error};
+			return error.response.data;
 	}
 }
 
 export const getCsrfToken = async () => {
 	try{
-		const { data } = await axios.get('/getcsrf');
-		axios.defaults.headers.post['X-CSRF-Token'] = data.csrf;
-		axios.defaults.headers.put['X-CSRF-Token'] = data.csrf;
-		axios.defaults.headers.delete['X-CSRF-Token'] = data.csrf;
+		const { data } = await api.get('/getcsrf');
+		api.defaults.headers.post['X-CSRF-Token'] = data.csrf;
+		api.defaults.headers.put['X-CSRF-Token'] = data.csrf;
+		api.defaults.headers.delete['X-CSRF-Token'] = data.csrf;
+		return data.csrf;
 
 	}catch(error){
-		return {error};
+		return error.response.data;
 	}
 }
 
 export const logout = async () => {
 	try {
-		await axios.get('/logout');
+		await api.get('/logout');
 	}
 	catch(error){
-		return  {error};
+		return error.response;
 	}
 }

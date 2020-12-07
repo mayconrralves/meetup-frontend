@@ -8,13 +8,11 @@ const Container = styled.div`
 	justify-content: center;
 	min-height: 500px;
 	p {
-		color: #fff;
 		font-size: 45px;
 		font-weight: bold;
 		margin-bottom: 30px;
 	}
 	a {
-		color: #fff;
 		font-size: 25px;
 	}
 	
