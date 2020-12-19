@@ -1,18 +1,19 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+
+import { Route, Redirect  } from 'react-router-dom';
 import { store } from '../store';
 export default ( { component: Component, isPrivate, path, ...rest } ) => {
-
+	
 	const { signed } = store.getState().auth;
 	const{ csrf } = store.getState().auth;
-	
+
 	if(!signed && isPrivate && csrf){
-		return <Redirect to='/' />
+		return <Redirect to='/'  />
 	}
 	if(signed && !isPrivate ){
-		return <Redirect to={path}/>
+		return <Redirect to={path} />
 	}
 	return <Route {...rest} render={props=>(
-		<Component {...props}/> 
+		<Component {...props} /> 
 		)}/>
 }

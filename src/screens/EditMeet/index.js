@@ -1,13 +1,12 @@
 import React from 'react';
 import Header from '../../components/Header';
-import Details from '../../components/Details';
-
-export default function DetailsScreen () {
+import EditMeet from '../../components/EditMeet';
+export default function Edit( ){
 
 	return (
 		<>
 			<Header />
-			<Details />
+			<EditMeet />
 		</>
 		)
 }

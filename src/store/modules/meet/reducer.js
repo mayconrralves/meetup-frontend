@@ -1,25 +1,25 @@
 import { produce } from 'immer';
 
 const INITIAL_STATE = {
-	loading: false,
+	success: false,
 	meets: [],
+	failure: false,
 }
 
 export default function meets(state=INITIAL_STATE, action) {
 	switch (action.type) {
-		case '@meet/INITIAL_REQUEST':
-		return produce(state, draft=>{
-			draft.loading = true;
-		});
 		case '@meet/SUCCESS_REQUEST':
 			return produce(state, draft=> {
-				draft.loading = false;
+				draft.success = true;
+				draft.failure = false;
 				draft.meets = action.payload.meets;
 			});
 		case '@meet/FAILURE_REQUEST':
 			return  produce(state, draft=>{
-				draft.loading = false;
+				draft.success = false;
+				draft.failure = true;
 			});
+		
 		default:
 			return state;
 	}

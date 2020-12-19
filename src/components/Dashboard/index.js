@@ -1,13 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { AiOutlinePlusCircle } from 'react-icons/ai';
-import Container from './style';
+import { useDispatch, useSelector } from 'react-redux';
+import { requestMeetups } from '../../store/modules/meet/actions';
+
 import MeetupList from '../MeetupList';
-export default () => {
+import history from '../../services/history';
+
+import Container from './style';
+
+export default function Dashboard() {
+	useEffect(() => {
+		 window.scrollTo(0, 0);
+		}, []);
+	const onCkikedNew = () => {
+		history.push('/meet/new');
+	}
 	return (
 		<Container> 
 			<section>
 				<h2>Meus Meetups</h2>
-				<button><AiOutlinePlusCircle/><span>Novo Meetup</span></button>
+				<button onClick={onCkikedNew}><AiOutlinePlusCircle/><span>Novo Meetup</span></button>
 			</section>
 			<MeetupList />
 		</Container>

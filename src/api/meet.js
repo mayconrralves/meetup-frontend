@@ -20,9 +20,10 @@ export const addBanner = async (file) => {
 	}
 }
 
-export const createMeet = async ( { localization, description, date, banner_id } ) => {
+export const createMeet = async ( { title, localization, description, date, banner_id } ) => {
 	try {
 		const { data } = await api.post('/meet/store',{
+			title,
 			localization,
 			description,
 			date,
@@ -41,12 +42,12 @@ export const updateMeet = async (id, meet) => {
 			...meet,
 		}, {
 			params: {
-				id: id,
+				id,
 			}
 		});
 
 		return data;
-
+		
 	}catch(error){
 		return  error.response.data;
 	}
@@ -55,10 +56,9 @@ export const updateMeet = async (id, meet) => {
 export const deleteMeet = async (id) => {
 	try {
 			const { data } = await api.delete('/meet/delete', {
-			params: {id}
+			params: { id }
 		});
 		return data;
-
 	}catch(error){
 		return  error.response.data;
 	}

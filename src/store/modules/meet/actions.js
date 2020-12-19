@@ -16,3 +16,19 @@ export function failureRequest(){
 		type: '@meet/FAILURE_REQUEST'
 	}
 }
+
+export function updateMeetRequest(id, meet, image){
+	return {
+		type: '@meet/REQUEST_UPDATE',
+		payload: { id, meet, image}
+	}
+}
+export function saveMeetRequest(meet, image){
+	return {
+		type: '@meet/REQUEST_CREATE',
+		payload: { 
+			meet,
+			image
+		}
+	}
+}

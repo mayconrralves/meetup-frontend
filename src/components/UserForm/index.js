@@ -13,9 +13,10 @@ const Form = ( { method,  handleSubmit, signin } ) => {
 					</>
 				) : (
 					<>
+						<input name='name' type='name' placeholder='Seu Nome' />
 						<input name='email' type='email' placeholder='Cadastre seu e-mail' />
 						<input name='password' type='password' placeholder='Digite sua senha...' />
-						<input name='password' type='password' placeholder='Digite sua senha novamente...'/>
+						<input name='confirmPassword' type='password' placeholder='Digite sua senha novamente...'/>
 						<input type='submit'  value='Criar Conta'/>
 					</>
 				);

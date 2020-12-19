@@ -1,7 +1,7 @@
 import React from 'react';
 import Container from './style';
 
-export default () => {
+export default function Title (){
 	return (
 			<Container>
 				Meetup

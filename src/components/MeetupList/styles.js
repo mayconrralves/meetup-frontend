@@ -15,7 +15,7 @@ const Container = styled.ul`
 		margin: 4px 0;
 		background-color: rgba(0,0,0, 0.13);
 		list-style: none;
-		.description{
+		.title{
 			font-weight: bold;
 			font-size: 1.3em;
 		}
