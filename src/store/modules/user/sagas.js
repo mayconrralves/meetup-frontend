@@ -1,15 +1,29 @@
 import { all, put, call, takeLatest} from 'redux-saga/effects';
+import { toast } from 'react-toastify';
 import { successRequest, failureRequest } from './actions';
 import { addAvatar, updateUser, createUser } from '../../../api/user';
+import history from '../../../services/history';
 
 export function* createUserRequest( { payload } ){
 	const {name, email, password, confirmPassword } = payload;
 	const response = yield call(createUser, name, email, password, confirmPassword);
-
 	if(response.error){
 		yield put(failureRequest());
+		toast.error("Erro: "+ response.error, {
+			style: {
+				borderRadius: '16px',
+			}
+		});
+		return;
 	}
 	yield put(successRequest());
+	toast.success("Usuário Cadastrado", {
+		autoClose: 2000,
+		style: {
+			borderRadius:'16px',
+		}
+	});
+	history.replace('/');
 }
 
 export function* updateUserRequest({ payload }){
@@ -19,6 +33,7 @@ export function* updateUserRequest({ payload }){
 		const responseImage = yield call(addAvatar, image);
 		if(responseImage.error){
 			yield put(failureRequest());
+			return;
 		}
 		user.avatar_id = responseImage.id;
 	}
@@ -26,9 +41,16 @@ export function* updateUserRequest({ payload }){
 
 	if(response.error){
 		yield put(failureRequest());
+		return;
 	}
 	yield put(successRequest());
-	
+	toast.success("Usuário Atualizado", {
+		autoClose: 2000,
+		style: {
+			borderRadius:'16px',
+		}
+	});
+	history.replace('/dashboard');
 }
 
 export default all([

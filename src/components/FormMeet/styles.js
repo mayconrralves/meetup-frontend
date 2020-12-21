@@ -37,7 +37,7 @@ const Container = styled.form`
 			background-color: rgba(0,0,0,0.13);
 			img {
 				display: ${props=>props.image ? 'inline' : 'none'};
-				max-width: 850px;
+				max-width: 800px;
 			  }
 			span {
 				display: flex;

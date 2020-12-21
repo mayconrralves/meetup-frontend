@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
 import { AiOutlinePlusCircle } from 'react-icons/ai';
-import { useDispatch, useSelector } from 'react-redux';
-import { requestMeetups } from '../../store/modules/meet/actions';
 
 import MeetupList from '../MeetupList';
 import history from '../../services/history';

@@ -3,7 +3,7 @@ import Container from './style';
 
 import Login from '../../components/Login';
 
-export default () => {
+export default function SignIn () {
 	
 
 	return (

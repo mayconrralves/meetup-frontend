@@ -2,7 +2,6 @@ import { takeLatest, call, put, all } from 'redux-saga/effects';
 import {signIn, getCsrfToken, logout } from '../../../api/session';
 import { signSuccess, signFailure } from './actions';
 import history from '../../../services/history';
-import Cookies from 'js-cookie';
 
 export function*  auth ( { payload } ){
     

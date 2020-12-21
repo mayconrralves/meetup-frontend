@@ -3,7 +3,7 @@ import Container from './style';
 
 import SignUp from '../../components/SignUp';
 
-export default () => {
+export default function SignUpScreen() {
 	
 
 	return (

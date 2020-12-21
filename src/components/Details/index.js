@@ -1,8 +1,8 @@
 import React, {useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import {  useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { MdDeleteForever, MdModeEdit } from 'react-icons/md';
-import { requestMeetups} from '../../store/modules/meet/actions';
+
 import history from '../../services/history';
 import { deleteMeet } from '../../api/meet';
 import Container from './styles';
@@ -10,7 +10,7 @@ import Container from './styles';
 export default function Details() {
 	const { id } = useParams();
 	const { meets } = useSelector(state=> state.meet);
-	const dispatch = useDispatch();
+
 	useEffect(()=>{
 		 window.scrollTo(0, 0);
 	},[]);
@@ -38,7 +38,7 @@ export default function Details() {
 				</div>
 			</section>
 			<section className="body">
-				<img src={meet.banner.url} />
+				<img src={meet.banner.url} alt='meet folder'/>
 				<p>{meet.description}</p>
 				<p>
 					<span>{meet.date}</span>

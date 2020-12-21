@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import Container from './style';
 import { Link } from 'react-router-dom';
 import Title from '../../components/Title';
-export default ()=> {
+export default function NotFound () {
 	const csrf = useSelector(state=>state.auth.csrf);
 	let direction = '/';
 	if(csrf){

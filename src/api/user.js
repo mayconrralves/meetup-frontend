@@ -11,7 +11,7 @@ export const createUser = async(name, email, password,confirmPassword)=>{
 		return data;
 	}
 	catch(error){
-		return error.response;
+		return error.response.data;
 	}
 }
 
@@ -27,7 +27,7 @@ export const updateUser = async(user) => {
 		return data;
 
 	}catch(error){
-		return error.response;
+		return error.response.data;
 	}
 }
 
@@ -38,7 +38,7 @@ export const addAvatar = async(file) => {
 		const  { data }  = await api.post('/user/avatar', formData);
 		return data;
 	}catch(error){
-		return error.response;
+		return error.response.data;
 	}
 }
 

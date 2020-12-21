@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Route, Redirect  } from 'react-router-dom';
 import { store } from '../store';
-export default ( { component: Component, isPrivate, path, ...rest } ) => {
+export default function Router( { component: Component, isPrivate, path, ...rest } ) {
 	
 	const { signed } = store.getState().auth;
 	const{ csrf } = store.getState().auth;
