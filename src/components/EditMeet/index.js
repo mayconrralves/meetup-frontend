@@ -18,11 +18,13 @@ export default function EditMeet(){
 		const title = event.target.title.value;
 		const image = event.target.image.files[0];
 		const date = event.target.date.value;
+		const time = event.target.time.value;
 		const description = event.target.description.value;
 		const localization = event.target.localization.value;
-
+		const dateTime = date+'T'+time+':00-03:00';
 		dispatch(updateMeetRequest(id, { 
 			title,
+			date: dateTime,
 			description,
 			localization,
 		}, image ));

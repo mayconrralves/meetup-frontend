@@ -10,6 +10,7 @@ const Container = styled.ul`
 	li {
 		display: flex;
 		justify-content: space-between;
+		flex-wrap: wrap;
 		color: #FFF;
 		padding: 16px 20px;
 		margin: 4px 0;

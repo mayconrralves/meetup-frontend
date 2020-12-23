@@ -68,7 +68,25 @@ const Container = styled.form`
 			&[type='file'] {
 	  			display: none;
 			}
+
+			&input[type=date] {
+				dateFormat: 'dd-mm-yyyy'
+			}
+
 		}
+		div {
+				width: 70%;
+				justify-content: space-between;
+				display: flex;
+				input {
+					width: 47%;
+					&::-webkit-calendar-picker-indicator{
+						filter: invert(50%);
+						
+					}
+				}
+
+			}
 
 		textarea {
 			margin-top: 10px;

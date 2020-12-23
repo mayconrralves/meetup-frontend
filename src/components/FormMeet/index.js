@@ -1,7 +1,11 @@
 import React, {useState } from 'react';
-import { AiOutlinePlusCircle } from 'react-icons/ai';
 
+import { AiOutlinePlusCircle } from 'react-icons/ai';
 import { FaCamera } from 'react-icons/fa';
+
+import { format, add } from 'date-fns';
+import  pt  from 'date-fns/locale/pt-BR';
+import { zonedTimeToUtc  } from 'date-fns-tz';
 
 import Container from './styles';
 
@@ -20,6 +24,7 @@ export default function FormMeet({ editMeet, handleSubmit }){
 	const uploadClick = event=> {
 		inputFile.click();
 	}
+	
 	return  ( 
 			<Container 
 				image={ editMeet || banner ? true : false}
@@ -46,9 +51,28 @@ export default function FormMeet({ editMeet, handleSubmit }){
 								inputFile = input;
 							}}
 					/>
+
 					<input name="title" type="text" placeholder='Título do Meetup' defaultValue={ editMeet ? editMeet.title : '' } />
 					<textarea name="description" placeholder='Descrição Completa' defaultValue={ editMeet ? editMeet.description : '' } />
-					<input name="date" type="datetime" placeholder='Data do Meetup' defaultValue={ editMeet ? editMeet.date : '' } />
+					<div>
+						<input 
+							name="date" 
+							type="date" 
+							min={format(new Date(), 'yyyy-MM-dd' )} 
+							defaultValue={ editMeet ? 
+								format(zonedTimeToUtc(editMeet.date, "America/Sao_Paulo"), 'yyyy-MM-dd') 
+								: format(new Date(), 'yyyy-MM-dd' )
+							 }
+						 />
+						<input 
+							name="time" 
+							type="time"
+							defaultValue={ editMeet ? 
+								format(zonedTimeToUtc(editMeet.date, "America/Sao_Paulo"), 'HH:mm')
+								: format(add(new Date(), {hours: 2}), 'HH:mm' )
+							} 
+						/>
+					</div>
 					<input name="localization" type="text" placeholder='Localização' defaultValue={ editMeet ? editMeet.localization : '' } />
 				</fieldset>
 				<button type="submit"><AiOutlinePlusCircle /><span>Salvar Meetup</span></button>
