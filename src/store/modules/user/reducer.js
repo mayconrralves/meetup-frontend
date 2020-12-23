@@ -2,6 +2,7 @@ import { produce } from 'immer';
 const  INITIAL_STATE={
 	success: false,
 	failure: false,
+	user: null
 };
 
 
@@ -11,6 +12,7 @@ export default function user(state=INITIAL_STATE, action){
 			return produce(state, draft=>{
 				draft.success = true;
 				draft.failure = false;
+				draft.user = action.payload.user;
 			});
 		case '@user/FAILURE_REQUEST':
 			return produce(state, draft=> {

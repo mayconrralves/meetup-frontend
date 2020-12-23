@@ -2,7 +2,6 @@ import React, {useEffect } from 'react';
 import {  useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { MdDeleteForever, MdModeEdit } from 'react-icons/md';
-
 import history from '../../services/history';
 import { deleteMeet } from '../../api/meet';
 import Container from './styles';

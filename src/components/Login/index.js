@@ -14,7 +14,6 @@ export default function Login() {
 	const dispatch = useDispatch();
 	const handleSubmit = async (event) => {
 		event.preventDefault();
-		console.log(event.target.email)
 		const email = event.target.email.value;
 		const password = event.target.password.value;
 		event.target.email.value = '';

@@ -21,7 +21,7 @@ const Container = styled.div`
 				display: flex;
 				flex-direction: column;
 				padding-right: 32px;
-				span {
+				span, a {
 					font-size: 1.1em;
 					font-weight: bold;
 					

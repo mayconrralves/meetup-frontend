@@ -6,7 +6,7 @@ import Container from './styles';
 
 export default  function  MeetupList() {
 	const dispatch = useDispatch();
-	const meets = useSelector(state => state.meet.meets);
+	const { meets } = useSelector(state => state.meet);
 	useEffect(()=> {
 		dispatch(requestMeetups());
 	}, []);

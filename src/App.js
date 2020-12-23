@@ -8,7 +8,7 @@ import history from './services/history';
 import Routes from './Routes';
 import { store } from './store';
 function App() {
-  return (
+  return store ? (
   	
   		<Provider store={store}>
   			
@@ -30,7 +30,9 @@ function App() {
 	  	
 	  	</Provider>
   
-  );
+  ) : (
+    <h1>Loading...</h1>
+  ) ;
 }
 
 export default App;

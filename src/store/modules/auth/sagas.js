@@ -1,5 +1,6 @@
 import { takeLatest, call, put, all } from 'redux-saga/effects';
-import {signIn, getCsrfToken, logout } from '../../../api/session';
+import { toast } from 'react-toastify';
+import {signIn, getCsrfToken, logout, getUser } from '../../../api/session';
 import { signSuccess, signFailure } from './actions';
 import history from '../../../services/history';
 
@@ -9,14 +10,24 @@ export function*  auth ( { payload } ){
 		const  response = yield call(signIn,email,password);
 		if(response.error){
 			yield put(signFailure());
-			return;
+			toast.error("Erro: "+ response.error, {
+					style: {
+						borderRadius: '16px',
+					}
+			});
+				return;
 		}
 		const csrf = yield call(getCsrfToken);
 		if(csrf.error){
 			yield put(signFailure());
+			toast.error("Erro: "+ csrf.error, {
+					style: {
+						borderRadius: '16px',
+					}
+			});			
 			return;
 		}
-		yield put(signSuccess(csrf, response.user));
+		yield put(signSuccess(csrf));
 		history.replace('/dashboard');
 }
 
@@ -28,13 +39,11 @@ export function* getCsrf(){
 		history.replace('/');
 		return;
 	}
-	yield put(signSuccess(csrf, null));
-
+	yield put(signSuccess(csrf));
 	
 	if( pathname === '/' || pathname === '/signup'){
 		history.replace('/dashboard');
 	}
-	
 }
 
 export function* signOut(){

@@ -10,10 +10,10 @@ export function csrfUpdate(){
 		type: '@auth/CSRF_UPDATE',
 	}
 }
-export function signSuccess(csrf, user){
+export function signSuccess(csrf){
 	return {
 		type: '@auth/SIGN_IN_SUCCESS',
-		payload: { csrf, user }
+		payload: { csrf }
 	}
 }
 

@@ -1,5 +1,13 @@
 import api from './api';
 
+export const getUser = async ()=>{
+	try {
+		const { data } = await api.get('/user');
+		return data;
+	}catch(error){
+		return error.response;
+	}
+}
 
 export const signIn = async (email, password)=>{
 	try{

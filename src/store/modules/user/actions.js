@@ -10,7 +10,7 @@ export const createUser = ( name, email, password, confirmPassword ) => {
 	}
 }
 
-export const updateUser = (user, image) => {
+export const updateUser = (user, image=null) => {
 	return {
 		type: '@user/UPDATE_USER',
 		payload: {
@@ -20,9 +20,10 @@ export const updateUser = (user, image) => {
 	}
 }
 
-export const successRequest = () => {
+export const successRequest = (user) => {
 	return {
-		type: '@user/SUCCESS_REQUEST'
+		type: '@user/SUCCESS_REQUEST',
+		payload : { user }
 	}
 }
 
