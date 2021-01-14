@@ -104,6 +104,8 @@ const Container = styled.form`
 	
 	button {
 		margin-top: 20px;
+		margin-bottom: 20px;
+		margin-right: 15%;
 		background-color: #f94d6a;
 		border-style: none;
 		border-radius: 4px;
@@ -112,10 +114,11 @@ const Container = styled.form`
 		color: #FFF;
 		font-weight: bold;
 		font-size: 1em;
-		margin-right: 15%;
+		
 		display: flex;
 		align-items: center;
 		justify-content: center;
+
 		svg {
 			padding-right: 6px;
 			font-size: 1.5em;

@@ -69,7 +69,7 @@ export default function FormMeet({ editMeet, handleSubmit }){
 							type="time"
 							defaultValue={ editMeet ? 
 								format(zonedTimeToUtc(editMeet.date, "America/Sao_Paulo"), 'HH:mm')
-								: format(add(new Date(), {hours: 2}), 'HH:mm' )
+								: format(new Date() , 'HH:mm' )
 							} 
 						/>
 					</div>
