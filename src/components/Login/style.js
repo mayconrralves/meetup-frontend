@@ -7,7 +7,6 @@ const Container = styled.div`
 		font-size: 18px;
 		font-weight: bold;
 	}
-	
 `;
 
 export default Container;

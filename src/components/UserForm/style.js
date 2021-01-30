@@ -23,9 +23,13 @@ const Form = styled.form`
 			width: 315px;
 		}
 	}
-	
+	span {
+		color: #fff;
+		font-size: 1.2em;
+		font-weight: bold;
+		margin: 12px 0 15px 0;
+		text-align: center;
 	}
-		
 `;
 
 export default Form;
