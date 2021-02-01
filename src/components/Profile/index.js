@@ -43,6 +43,7 @@ export default function Profile( ){
 			dispatch(updateUser(user));
 		}catch(err){
 			setError(err.errors ? err.errors[0] : null);
+			window.scrollTo(0, 0);
 		}
 		
 	}
@@ -51,7 +52,7 @@ export default function Profile( ){
 
 			<fieldset>
 				<legend>Atualize seu Cadastro <hr/></legend>
-				{error && <span>{error}</span>}
+				{error && <span className='error'>{error}</span>}
 				<label>Nome:</label>
 				<input type="name" name="name" defaultValue={ user.name } />
 				<label>Email:</label>

@@ -24,6 +24,13 @@ export const Container = styled.form`
 				margin: 6px 0 12px 0;
 			}
 		}
+		.error {
+			color: #fff;
+			font-size: 1.4em;
+			font-weight: bold;
+			margin: 12px 0 15px 0;
+			text-align: center;
+		}
 		label {
 			color: #fff;
 			font-size: 1.5em;
