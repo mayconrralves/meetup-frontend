@@ -4,12 +4,12 @@ const Form = styled.form`
 	height: 100%;
 	display: flex;
 	flex-direction: column;
-	margin-top: 24px;
+	margin: 24px 0 12px 0;
 	input{
 		border: 0;
-		width: 315px;
-		height: 50px;
-		margin-bottom: 6px;
+		width: 400px;
+		height: 60px;
+		margin-bottom: 12px;
 		border-radius: 4px;
 		font-size: 18px;
 		background-color: rgba(0,0,0, 0.3);
@@ -20,8 +20,7 @@ const Form = styled.form`
 		&:last-child{
 			background-color: #f94d6a;
 			font-weight: bold;
-			width: 315px;
-		}
+			margin-top: 12px;
 	}
 	span {
 		color: #fff;

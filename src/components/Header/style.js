@@ -9,6 +9,7 @@ const Container = styled.div`
 		width: 70%;
 		height: 80px;
 		display: flex;
+		
 		justify-content: space-between; 
 		align-items: center;
 		nav {
