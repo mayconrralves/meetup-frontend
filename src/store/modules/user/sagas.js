@@ -35,14 +35,23 @@ export function* updateUserRequest({ payload }){
 		const responseImage = yield call(addAvatar, image);
 		if(responseImage.error){
 			yield put(failureRequest());
+			toast.error("Erro: "+ responseImage.error, {
+			style: {
+				borderRadius: '16px',
+			}
+		});
 			return;
 		}
 		user.avatar_id = responseImage.id;
 	}
 	const response = yield call(updateUser, user);
-
 	if(response.error){
 		yield put(failureRequest());
+		toast.error("Erro: "+ response.error, {
+			style: {
+				borderRadius: '16px',
+			}
+		});
 		return;
 	}
 	yield put(successRequest(user));

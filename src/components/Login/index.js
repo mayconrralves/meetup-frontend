@@ -15,6 +15,7 @@ export default function Login() {
 	yup.setLocale({
 			mixed: {
 				required: (e) =>  `Preencha o campo ${e.path}`,
+				oneOf: () => `Senhas não conferem`
 			},
 			string: {
 					email: "Insira um email válido",

@@ -5,6 +5,13 @@ const Form = styled.form`
 	display: flex;
 	flex-direction: column;
 	margin: 24px 0 12px 0;
+	.error {
+		color: #fff;
+		font-size: 1.2em;
+		font-weight: bold;
+		margin: 12px 0 15px 0;
+		text-align: center;
+	}
 	input{
 		border: 0;
 		width: 400px;
@@ -22,13 +29,7 @@ const Form = styled.form`
 			font-weight: bold;
 			margin-top: 12px;
 	}
-	span {
-		color: #fff;
-		font-size: 1.2em;
-		font-weight: bold;
-		margin: 12px 0 15px 0;
-		text-align: center;
-	}
+	
 `;
 
 export default Form;

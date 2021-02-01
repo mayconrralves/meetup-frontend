@@ -9,7 +9,7 @@ const Form = ( { method,  handleSubmit, signin, msgError} ) => {
 					<>
 						<input name='email' type='email' placeholder='Seu Email' />
 						<input name='password' type='password' placeholder='Digite sua senha...' />
-						{ msgError && <span>{msgError}</span>}
+						{ msgError && <span className='error'>{msgError}</span>}
 						<input type='submit' value='Entrar' />
 					</>
 				) : (
@@ -18,9 +18,9 @@ const Form = ( { method,  handleSubmit, signin, msgError} ) => {
 						<input name='email' type='email' placeholder='Cadastre seu e-mail' />
 						<input name='password' type='password' placeholder='Digite sua senha...' />
 						<input name='confirmPassword' type='password' placeholder='Digite sua senha novamente...'/>
-						{ msgError && <span>{msgError}</span>}
+						{ msgError && <span className='error' >{msgError}</span>}
 						<input type='submit'  value='Criar Conta'/>
-					</>
+					</> 
 				);
 	}
 	return (
