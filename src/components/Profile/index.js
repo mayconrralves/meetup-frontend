@@ -18,23 +18,26 @@ export default function Profile( ){
 		setError(null);
 		event.preventDefault();
 		const user = {};
-		user.name = event.target.name.value;
-		user.email = event.target.email.value;
-		user.oldPassword = event.target.oldPassword.value;
-		user.password = event.target.newPassword.value;
-		user.confirmPassword = event.target.confirmPassword.value;
+		if ( event.target.name.value ) 	user.name = event.target.name.value;
+		if ( event.target.email.value ) 	user.email = event.target.email.value;
+		if ( event.target.oldPassword.value ) 	user.oldPassword = event.target.oldPassword.value;
+		if ( event.target.newPassword.value ) 	user.password = event.target.newPassword.value;
+		if ( event.target.confirmPassword.value ) user.confirmPassword = event.target.confirmPassword.value;
 
 		const schema = yup.object().shape({
 			name: yup.string(),
 			email: yup.string().email("Insira um email válido"),
-			password: yup.string(),
-			confirmPassword: yup.string().oneOf([yup.ref('password')], "Senhas não conferem"),
-			oldPassword: yup.string().when(['password', 'confirmPassword'], {
-				is: (password, confirmPassword) =>password && confirmPassword ? 
+			password: yup.string().min(6, 'Senha deve ter no mínimo 06 caracteres'),
+			confirmPassword: yup.string()
+								.required()
+								.oneOf([yup.ref('password')], "Senhas não conferem"),
+			oldPassword: yup.string()
+							.when(['password', 'confirmPassword'], {
+									is: (password, confirmPassword) =>password && confirmPassword ? 
 													password === confirmPassword :
 													false,
-				then: yup.string().required("É necessária senha atual"),
-			}),
+									then: yup.string().required("É necessária senha atual"),
+							}),
 		});
 		try {
 			await schema.validate({

@@ -9,7 +9,7 @@ import { zonedTimeToUtc  } from 'date-fns-tz';
 
 import Container from './styles';
 
-export default function FormMeet({ editMeet, handleSubmit }){
+export default function FormMeet({ editMeet, handleSubmit, msgError }){
 	const [banner, setBanner] = useState('');
 	let inputFile = '';
 	const imageSubmit = event => {
@@ -32,8 +32,9 @@ export default function FormMeet({ editMeet, handleSubmit }){
 				onSubmit={handleSubmit}
 				enctype="multipart/form-data"		
 			>
-				<fieldset>
+/				<fieldset>
 					<legend> {editMeet ? 'Edite ' : 'Cadastre ' } seu Meetup <hr/></legend>
+					{ msgError && <span className='.error'>{msgError}</span>}
 					<label htmlFor='file-selector'>
 						<span><FaCamera/>Selecionar imagem</span>
 						<img src={  banner ? banner : 
