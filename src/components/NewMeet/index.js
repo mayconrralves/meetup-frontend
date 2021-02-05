@@ -4,16 +4,10 @@ import * as yup from 'yup';
 import { parseISO, isPast, isValid } from 'date-fns';
 import FormMeet from '../FormMeet';
 import { saveMeetRequest } from '../../store/modules/meet/actions';
+import { FILE_SIZE, SUPPORTED_FORMATS } from '../../config';
 export default function NewMeet(){
 	const [error, setError] = useState(null);
 	const dispatch = useDispatch();
-	const FILE_SIZE = 1000000;
-	const SUPPORTED_FORMATS = [
-     	"image/jpg",
-    	"image/jpeg",
-    	"image/gif",
-    	"image/png"
-    ];
 	yup.setLocale({
 			mixed: {
 				required: (e) =>  `Preencha o campo ${e.path}`,

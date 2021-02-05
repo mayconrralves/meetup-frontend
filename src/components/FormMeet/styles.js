@@ -6,6 +6,13 @@ const Container = styled.form`
 	flex-direction: column;
 	align-items: flex-end;
 	margin-top: 25px;
+	.error {
+		color: #fff;
+		font-size: 1.2em;
+		font-weight: bold;
+		margin: 12px 0 15px 0;
+		text-align: center;
+	}
 	fieldset {
 		width: 100%;
 		display: flex;

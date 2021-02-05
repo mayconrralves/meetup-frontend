@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import {useSelector, useDispatch } from 'react-redux';
+import { parseISO, isPast, isValid } from 'date-fns';
 import * as yup from 'yup';
 import FormMeet from '../FormMeet';
 import { updateMeetRequest } from '../../store/modules/meet/actions';
 import history from '../../services/history';
-
+import { FILE_SIZE, SUPPORTED_FORMATS } from '../../config';
 
 export default function EditMeet(){
 
@@ -13,70 +14,73 @@ export default function EditMeet(){
 	const { id } = useParams();
 	const dispatch = useDispatch();
 	const { meets } = useSelector(state=>state.meet);
+	console.log(meets)
 	const editMeet = meets.find(m=>m.id===parseInt(id));
-	const FILE_SIZE = 160 * 1024;
-	const SUPPORTED_FORMATS = [
-     	"image/jpg",
-    	"image/jpeg",
-    	"image/gif",
-    	"image/png"
-    ];
+	
 	yup.setLocale({
 			mixed: {
 				required: (e) =>  `Preencha o campo ${e.path}`,
 			},
 
 	});
-	const schema = yup.object().shape({
+		const schema = yup.object().shape({
 		title: yup.string().required(),
 		description: yup.string().required(),
 		localization: yup.string().required(),
+		dateTime: yup.string()
+				 .test(
+				 	'isValid',
+				 	'Data e/ou hora inválida(s)',
+				 	value => value && isValid(parseISO(value))
+				 	)
+				 .test(
+				 	'isPast',
+				 	'Você não pode criar Meetup com data passada',
+				 	value => value && !isPast(parseISO(value))
+				 ),
+			
 		image : yup.mixed()
-				   .required()
 				   .test(
 				   		"fileSize",
-				   		"Arquivo muito grande",
-				   		value => value && value.size <= FILE_SIZE
+				   		"Imagem muito grande",
+				   		/*if image undefined then return true because the file will not be send, */
+				   		value => value ? value.size <= FILE_SIZE : true
 				   	)
 				   	.test(
 				   		"fileFormat",
-				   		"Formato não suportado",
-				   		value => value && SUPPORTED_FORMATS.includes(value.type),
+				   		"Formato da imagem não suportado",
+				   		/*if image undefined then return true because the file will not be send, */
+				   		value => value ? SUPPORTED_FORMATS.includes(value.type) : true,
 				   	)
 	});	
 	const handleSubmit = async (event) => {
 		setError(null);
 		event.preventDefault();
-		const title = event.target.title.value;
-		const image = event.target.image.files[0];
-		const date = event.target.date.value;
-		const time = event.target.time.value;
-		const description = event.target.description.value;
-		const localization = event.target.localization.value;
-		const dateTime = date+'T'+time+':00-03:00';
+		const meet = {}
+		const image = event.target.image.files.length ? event.target.image.files[0] : null;
+		meet.title = event.target.title.value;
+		meet.description = event.target.description.value;
+		meet.localization = event.target.localization.value;
+		meet.dateTime = event.target.date.value+'T'+event.target.time.value;
+		
 		try {
 			await schema.validate({
-				title,
-				image,
-				description,
-				localization
+				...meet,
+				image
+				
 			});
-			// dispatch(updateMeetRequest(id, { 
-			// 	title,
-			// 	date: dateTime,
-			// 	description,
-			// 	localization,
-			// }, image ));
-			// history.push('/dashboard');
-
-		}catch(err){
+			dispatch(updateMeetRequest(
+				id,
+				meet,
+				image	
+			));
+		} catch(err) {
 			setError(err.errors ? err.errors[0] : null);
 			window.scrollTo(0, 0);
 		}
-
 	}
 	return meets.length ? (
-			<FormMeet editMeet={editMeet} handleSubmit={handleSubmit} msgError={error}/>
+			<FormMeet editMeet={editMeet} accept={SUPPORTED_FORMATS} handleSubmit={handleSubmit} msgError={error}/>
 		) : (
 		<h1>Loading...</h1>
 		)

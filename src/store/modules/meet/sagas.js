@@ -18,7 +18,7 @@ export function* updateMeetup({ payload }){
     	const responseImage = yield call(addBanner, image);
 		if(responseImage.error){
 			yield put(failureRequest());
-			toast.error("Erro: "+ response.error, {
+			toast.error("Erro: "+ responseImage.error, {
 			style: {
 				borderRadius: '16px',
 			}
@@ -39,7 +39,6 @@ export function* updateMeetup({ payload }){
 		});
 		return;
 	}
-	yield put(successRequest());
 	toast.success("Meetup Atualizado", {
 		autoClose: 2000,
 		style: {
@@ -55,7 +54,7 @@ export function* createMeetup( { payload } ) {
 	const responseImage= yield call(addBanner, image);
 	if(responseImage.error){
 		yield put(failureRequest());
-		toast.error("Erro: "+ response.error, {
+		toast.error("Erro: "+ responseImage.error, {
 			style: {
 				borderRadius: '16px',
 			}

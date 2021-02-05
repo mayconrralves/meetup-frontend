@@ -3,26 +3,27 @@ import React, {useState } from 'react';
 import { AiOutlinePlusCircle } from 'react-icons/ai';
 import { FaCamera } from 'react-icons/fa';
 
-import { format, add } from 'date-fns';
-import  pt  from 'date-fns/locale/pt-BR';
+import { format } from 'date-fns';
 import { zonedTimeToUtc  } from 'date-fns-tz';
 
 import Container from './styles';
 
-export default function FormMeet({ editMeet, handleSubmit, msgError }){
+export default function FormMeet({ editMeet, handleSubmit, msgError, accept }){
 	const [banner, setBanner] = useState('');
 	let inputFile = '';
 	const imageSubmit = event => {
 		const file = event.target.files[0];
 		const reader = new FileReader();
-		reader.readAsDataURL(file);
-		reader.onloadend = (e) => {
-			setBanner(reader.result);
+		if(file){
+			reader.readAsDataURL(file);
+			reader.onloadend = (e) => {
+				setBanner(reader.result);
+			}
 		}
-		setBanner(event.target.files[0]);
 	}
 	const uploadClick = event=> {
 		inputFile.click();
+		event.preventDefault();
 	}
 	
 	return  ( 
@@ -32,9 +33,9 @@ export default function FormMeet({ editMeet, handleSubmit, msgError }){
 				onSubmit={handleSubmit}
 				enctype="multipart/form-data"		
 			>
-/				<fieldset>
+				<fieldset>
 					<legend> {editMeet ? 'Edite ' : 'Cadastre ' } seu Meetup <hr/></legend>
-					{ msgError && <span className='.error'>{msgError}</span>}
+					{ msgError && <span className='error'>{msgError}</span>}
 					<label htmlFor='file-selector'>
 						<span><FaCamera/>Selecionar imagem</span>
 						<img src={  banner ? banner : 
@@ -47,6 +48,7 @@ export default function FormMeet({ editMeet, handleSubmit, msgError }){
 					<input name="image"
 						   type="file"
 						   id="file-selector"
+						   accept= {accept}
 						   onChange={imageSubmit} 
 						   ref={ input => {
 								inputFile = input;
